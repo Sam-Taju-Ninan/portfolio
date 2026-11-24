@@ -163,6 +163,10 @@
   .xp-item p{color:var(--muted);font-size:.94rem}
 
   /* ---- violin ---- */
+  .resume-wrap{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;backdrop-filter:blur(8px)}
+  .resume-wrap embed{width:100%;height:820px;border:none;border-radius:10px;background:#fff;display:block}
+  .resume-actions{display:flex;gap:13px;flex-wrap:wrap;margin-bottom:18px}
+  @media(max-width:720px){.resume-wrap embed{height:540px}}
   .violin{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:36px;
     display:flex;justify-content:space-between;align-items:center;gap:26px;flex-wrap:wrap;backdrop-filter:blur(8px);
     position:relative;overflow:hidden}
@@ -197,6 +201,7 @@
       <a href="#about">About</a>
       <a href="#projects">Projects</a>
       <a href="#experience">Experience</a>
+      <a href="#resume">Resume</a>
       <a href="#music">Music</a>
       <a href="#contact">Contact</a>
     </nav>
@@ -369,6 +374,20 @@
 </div>
 
 <!-- MUSIC -->
+<div class="wrap">
+  <section id="resume">
+    <div class="eyebrow reveal">Document</div>
+    <h2 class="reveal">My <span class="grad">résumé</span></h2>
+    <div class="resume-actions reveal">
+      <a class="btn primary" href="resume.pdf" target="_blank" rel="noopener">Open full PDF →</a>
+      <a class="btn" href="resume.pdf" download>Download</a>
+    </div>
+    <div class="resume-wrap reveal">
+      <embed src="resume.pdf" type="application/pdf">
+    </div>
+  </section>
+</div>
+
 <div class="wrap">
   <section id="music">
     <div class="eyebrow reveal">Beyond engineering</div>
