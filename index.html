@@ -270,16 +270,25 @@
           <h3>MP3 → Sheet Music Conversion Tool</h3>
           <span class="proj-date">Jun 2025 – Present</span>
         </div>
-        <p class="muted">Automated ML audio pipeline that turns a song into a first-pass readable score.</p>
+        <p class="lede">A Python tool that takes a raw MP3 and produces a first-pass piano score you can open in MuseScore.</p>
+        <p class="ctx">Turning audio into notation is a genuinely hard, unsolved problem, so I built it as a chain
+          of small stages rather than one black box. Each stage cleans up the output of the last, and because the
+          model's raw transcription is noisy, I layered music-theory rules and an LLM review on top instead of
+          trusting the ML blindly.</p>
+        <div class="flow">
+          pipeline &nbsp;→&nbsp; <b>stem split</b> → <b>audio-to-MIDI</b> → <b>harmonic cleanup</b> → <b>beat quantize</b> → <b>LLM review</b> → <b>notation</b>
+        </div>
+        <h4 class="sub">What I built</h4>
         <ul>
-          <li>Integrated Meta's Demucs for stem separation and Spotify's Basic-Pitch for audio-to-MIDI transcription.</li>
-          <li>Wrote Python processing with librosa, pretty_midi, and music21 to filter harmonic overtones, quantize beats, and render notation.</li>
-          <li>Used an LLM post-processing pass to flag and correct implausible notes and invalid rhythms before engraving.</li>
-          <li>Added a desktop launcher with a file picker so any MP3 can be dropped in and converted.</li>
+          <li><b style="color:var(--text);font-weight:600">Model integration:</b> chained Meta's Demucs to isolate the instrumental or vocal line, then Spotify's Basic-Pitch to transcribe that stem into MIDI, bounded to piano range.</li>
+          <li><b style="color:var(--text);font-weight:600">Music-theory cleanup:</b> wrote logic in pretty_midi and librosa to strip harmonic overtones (false notes an octave or fifth above a real one), snap note onsets to detected beats, and auto-detect key and clefs in music21.</li>
+          <li><b style="color:var(--text);font-weight:600">LLM correction pass:</b> export the score to MusicXML, have a model flag implausible notes and bad rhythms, and return structured JSON edits (delete or transpose) that get applied to the score automatically, not just read as advice.</li>
+          <li><b style="color:var(--text);font-weight:600">Desktop launcher:</b> added a simple file-picker app so any MP3 can be dropped in and converted without touching the code.</li>
         </ul>
         <div class="stack">
           <span class="chip">Python</span><span class="chip">Demucs</span><span class="chip">Basic-Pitch</span>
-          <span class="chip">librosa</span><span class="chip">music21</span><span class="chip">LLMs</span>
+          <span class="chip">librosa</span><span class="chip">pretty_midi</span><span class="chip">music21</span>
+          <span class="chip">MIDI</span><span class="chip">LLMs</span>
         </div>
         <div class="proj-links"><a href="https://github.com/Sam-Taju-Ninan" target="_blank" rel="noopener">→ GitHub</a></div>
       </div>
